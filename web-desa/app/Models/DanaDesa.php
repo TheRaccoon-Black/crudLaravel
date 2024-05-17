@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class DanaDesa extends Model
 {
     use HasFactory;
+
+    protected $table = 'dana_desa';
+
+    protected $fillable = [
+        'name', 'tahun', 'sumberDana', 'penerimaDana', 'tanggalPenerimaan',
+        'penerimaManfaat', 'keterangan', 'tanggalPelaporan', 'alokasiDana',
+        'status', 'jumlahDana'
+    ];
 }
