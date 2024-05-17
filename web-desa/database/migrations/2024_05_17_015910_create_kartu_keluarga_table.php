@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('anggota_kk', function (Blueprint $table) {
+        Schema::create('kartu_keluarga', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nama anggota keluarga
-            $table->string('nik')->unique(); // Nomor Induk Kependudukan (NIK), harus unik
-            $table->foreignId('kartu_keluarga_id') // Foreign key yang merujuk pada tabel kartuKeluarga
-                  ->constrained('kartu_keluarga')
-                  ->onDelete('cascade');
-            $table->string('hubungan'); // Hubungan dalam keluarga (misalnya ayah, ibu, anak, dll.)
-            $table->enum('gender', ['male', 'female']); // Jenis kelamin
-            $table->date('tanggalLahir'); // Tanggal lahir
+            $table->string('nameKK'); // Nama kepala keluarga
+            $table->string('noKK')->unique(); // Nomor Kartu Keluarga, harus unik
+            $table->string('alamat'); // Alamat keluarga
+            $table->integer('jumlahAnggota'); // Jumlah anggota keluarga
+            $table->string('urlKK'); // URL atau path ke file Kartu Keluarga
             $table->timestamps(); // Kolom created_at dan updated_at otomatis
         });
     }

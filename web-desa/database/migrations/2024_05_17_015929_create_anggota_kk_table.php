@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('anggota_kk', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name'); // Nama anggota keluarga
+            $table->string('nik')->unique(); // Nomor Induk Kependudukan (NIK), harus unik
+            $table->foreignId('kartu_keluarga_id') // Foreign key yang merujuk pada tabel kartuKeluarga
+                  ->constrained('kartu_keluarga')
+                  ->onDelete('cascade');
+            $table->string('hubungan'); // Hubungan dalam keluarga (misalnya ayah, ibu, anak, dll.)
+            $table->enum('gender', ['male', 'female']); // Jenis kelamin
+            $table->date('tanggalLahir'); // Tanggal lahir
+            $table->timestamps(); // Kolom created_at dan updated_at otomatis
         });
     }
-
     /**
      * Reverse the migrations.
      */
